@@ -3,8 +3,8 @@ import React, { Component } from 'react';
 
 class Form extends Component {
 
-  submitForm(e, data) {
-    console.log(e, data)
+  submitForm(data) {
+    console.log(data)
   }
 
   render() {
