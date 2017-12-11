@@ -3,7 +3,7 @@ export const getBaseUrl = () => {
 }
 
 export const getAssets = () => {
-  fetch(`${this.getBaseUrl}/Assets`)
+  fetch('/Assets')
     .then(response => response.json()
     .then(response => { return response }));
 }
@@ -13,3 +13,4 @@ export const putAssets = () =>  {
     method: 'put'
   }).then(response => { return response.json() });
 }
+

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Header from './components/Header.jsx';
 import Form from './components/Form.jsx';
 import Display from './components/Display.jsx';
-import { getAssets } from './helpers/APIService.js'
+import { getAssets } from './services/APIService.js'
 import './App.css';
 
 const stubData = [
@@ -19,8 +19,8 @@ export default class App extends Component {
   }
 
   componentWillMount() {
-    const data = stubData
-    // const data = getAssets();
+    // const data = stubData
+    const data = getAssets();
     this.setState({ appData: data })
   }
 
