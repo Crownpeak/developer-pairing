@@ -10,6 +10,7 @@ namespace Interview.Entities
   {
     public Asset()
     {
+      DateCreatedUTC = DateTime.UtcNow;
       Fields = new HashSet<AssetFields>();
     }
 
@@ -31,6 +32,7 @@ namespace Interview.Entities
         new Asset()
         {
           Name = "test",
+          CreatedBy = new Guid(),
           Fields = new List<AssetFields>()
           {
             new AssetFields()

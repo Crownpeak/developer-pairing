@@ -1,7 +1,9 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Interview.Data;
+using Interview.Data.DTO;
 using Interview.Entities;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
@@ -53,13 +55,18 @@ namespace Interview.Api.Controllers
     /// <param name="newAsset"></param>
     /// <returns></returns>
     [HttpPut("")]
-    public async Task<IActionResult> CreateAsync([FromBody] Asset newAsset)
+    public async Task<IActionResult> CreateAsync([FromBody] AssetDTO newAsset)
     {
       if (await _dbContext.Assets.AnyAsync(x => x.Id == newAsset.Id))
       {
         return BadRequest();
       }
-      _dbContext.Assets.Add(newAsset);
+      _dbContext.Assets.Add(new Asset()
+      {
+        Name = newAsset.Name,
+        CreatedBy = new Guid()
+      });
+
       _dbContext.SaveChanges();
       return Ok(newAsset);
     }
