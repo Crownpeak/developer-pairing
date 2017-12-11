@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
-
+import { putAssets } from '../services/APIService'
 
 class Form extends Component {
 
   submitForm(data) {
-    console.log(data)
+    putAssets(data)
   }
 
   render() {
@@ -20,7 +20,7 @@ class Form extends Component {
 
         <button
           type="submit"
-          onClick={(e) => this.submitForm(e, {
+          onClick={(e) => this.submitForm({
             name: this.name.value,
           })}
         >
