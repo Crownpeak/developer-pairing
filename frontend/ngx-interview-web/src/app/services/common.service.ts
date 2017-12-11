@@ -6,7 +6,15 @@ export class CommonService {
   constructor() { }
 
   getBaseUrl() {
-    return 'http://localhost:63477/api/'
+    return this.getCSharpApiUrl();
+  }
+
+  getCSharpApiUrl() {
+    return 'http://localhost:63477/api/';
+  }
+
+  getJavaApiUrl() {
+    return 'http://localhost:63477/api/';
   }
 
 }
