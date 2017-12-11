@@ -9,16 +9,17 @@ import 'rxjs/add/operator/map';
 @Injectable()
 export class AssetsService {
 
-  private heroesUrl = 'Assets/';  // URL to web API
+  private assetUrl = 'Assets/';  // URL to web API
 
   constructor (private http: Http,
                private commonSvc: CommonService) {}
 
   getAssts(): Observable<any[]> {
-    return this.http.get(this.commonSvc.getBaseUrl() + this.heroesUrl)
+    return this.http.get(this.commonSvc.getBaseUrl() + this.assetUrl)
                     .map(this.extractData)
                     .catch(this.handleError);
   }
+
   private extractData(res: Response) {
     let body = res.json();
     return body;
