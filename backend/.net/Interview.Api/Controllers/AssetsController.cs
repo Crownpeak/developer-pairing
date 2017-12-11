@@ -20,7 +20,7 @@ namespace Interview.Api.Controllers
       _dbContext = dbContext;
     }
 
-    
+
     /// <summary>
     /// Return all assets in a system
     /// </summary>
@@ -39,14 +39,12 @@ namespace Interview.Api.Controllers
     [HttpGet("{assetId}")]
     public async Task<IActionResult> GetAsync(int assetId)
     {
-      if (await _dbContext.Assets.AnyAsync(x => x.Id == assetId))
+      var asset = await _dbContext.Assets.FirstOrDefaultAsync(x => x.Id == assetId);
+      if (asset == null)
       {
         return BadRequest();
       }
-      var valToRemove = await _dbContext.Assets.FirstOrDefaultAsync(x => x.Id == assetId);
-      _dbContext.Assets.Remove(valToRemove);
-      await _dbContext.SaveChangesAsync();
-      return Ok(valToRemove);
+      return Ok(asset);
     }
 
     /// <summary>
@@ -73,7 +71,7 @@ namespace Interview.Api.Controllers
     /// <returns></returns>
     [HttpDelete("{assetId}")]
     public async Task<IActionResult> DeleteAsync(int assetId)
-    { 
+    {
       if (await _dbContext.Assets.AnyAsync(x => x.Id == assetId))
       {
         return BadRequest();
