@@ -2,15 +2,8 @@ import React, { Component } from 'react';
 import Header from './components/Header.jsx';
 import Form from './components/Form.jsx';
 import Display from './components/Display.jsx';
-import { getAssets } from './helpers/APIService.js'
+import { getAssets } from './services/APIService.js'
 import './App.css';
-
-const stubData = [
-  {name: "Sam", id: 1},
-  {name: "Sam", id: 2},
-  {name: "Sam", id: 3},
-  {name: "Sam", id: 4}
-]
 
 export default class App extends Component {
   constructor() {
@@ -19,8 +12,7 @@ export default class App extends Component {
   }
 
   componentWillMount() {
-    const data = stubData
-    // const data = getAssets();
+    const data = getAssets();
     this.setState({ appData: data })
   }
 
