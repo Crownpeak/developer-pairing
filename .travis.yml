@@ -26,5 +26,4 @@ before_script:
 - npm run pree2e
 - npm run ng lint
 - npm run ng build --prod
-- bash 404.sh
 - npm test
