@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Header from './components/Header.jsx';
 import Form from './components/Form.jsx';
 import Display from './components/Display.jsx';
-import logo from './logo.svg';
+import { getAssets } from './helpers/APIService.js'
 import './App.css';
 
 const stubData = [
@@ -12,16 +12,16 @@ const stubData = [
   {name: "Sam", id: 4}
 ]
 
-class App extends Component {
+export default class App extends Component {
   constructor() {
     super()
-    this.state = {
-      appData: stubData
-    }
+    this.state = {}
   }
 
   componentWillMount() {
-    console.log('LOADED')
+    const data = stubData
+    // const data = getAssets();
+    this.setState({ appData: data })
   }
 
 
@@ -37,5 +37,3 @@ class App extends Component {
     );
   }
 }
-
-export default App;
