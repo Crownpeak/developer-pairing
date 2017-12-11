@@ -3,21 +3,19 @@ export const getBaseUrl = () => {
 }
 
 export const getAssets = () => {
-  fetch('/Assets')
-    .then(response => response.json()
-    .then(response => { return response }));
+  return fetch('/api/Assets')
+    .then(response => response.json());
 }
 
 export const putAssets = (data) =>  {
-  fetch(`${this.getBaseUrl}/Assets`, {
+  return fetch(`${this.getBaseUrl}/Assets`, {
     method: 'put',
     body: data
-  }).then(response => { return response.json() });
+  }).then(response => { response.json() });
 }
 
 export const deleteAssets = (assetId) => {
-  fetch(`${this.getBaseUrl}/Assets/${assetId}`, {
+  return fetch(`${this.getBaseUrl}/Assets/${assetId}`, {
     method: 'delete',
-  }).then(response => response.json()
-    .then(response => { return response }));
+  }).then(response => response.json());
 }
