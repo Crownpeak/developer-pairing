@@ -23,8 +23,7 @@ namespace Interview.Api.Controllers
     /// Return all assets in a system
     /// </summary>
     /// <returns></returns>
-    [Route("getall")]
-    [HttpGet]
+    [HttpGet("")]
     public async Task<IActionResult> GetAsync()
     {
       return Ok(await _dbContext.AssetFields.ToListAsync<AssetFields>());
@@ -35,7 +34,7 @@ namespace Interview.Api.Controllers
     /// </summary>
     /// <param name="assetFieldId"></param>
     /// <returns></returns>
-    [HttpGet("get/{assetId}")]
+    [HttpGet("{assetId}")]
     public async Task<IActionResult> GetAsync(int assetFieldId)
     {
       if (await _dbContext.AssetFields.AnyAsync(x => x.Id == assetFieldId))
@@ -53,7 +52,7 @@ namespace Interview.Api.Controllers
     /// </summary>
     /// <param name="newAssetField"></param>
     /// <returns></returns>
-    [HttpPut("create")]
+    [HttpPut("")]
     public async Task<IActionResult> CreateAsync([FromBody] AssetFields newAssetField)
     {
       if (await _dbContext.AssetFields.AnyAsync(x => x.Id == newAssetField.Id))
@@ -70,7 +69,7 @@ namespace Interview.Api.Controllers
     /// </summary>
     /// <param name="assetFieldId"></param>
     /// <returns></returns>
-    [HttpDelete("delete/{assetId}")]
+    [HttpDelete("{assetId}")]
     public async Task<IActionResult> DeleteAsync(int assetFieldId)
     { 
       if (await _dbContext.AssetFields.AnyAsync(x => x.Id == assetFieldId))

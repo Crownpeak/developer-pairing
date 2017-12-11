@@ -9,7 +9,7 @@ import 'rxjs/add/operator/map';
 @Injectable()
 export class AssetsService {
 
-  private heroesUrl = 'Assets/getall';  // URL to web API
+  private heroesUrl = 'Assets/';  // URL to web API
 
   constructor (private http: Http,
                private commonSvc: CommonService) {}
