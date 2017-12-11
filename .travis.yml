@@ -20,7 +20,7 @@ before_install:
 - export DISPLAY=:99.0
 - sh -e /etc/init.d/xvfb start
 before_script:
-- cd ngx-interview-web
+- cd frontend/ngx-interview-web
 - npm install
 - npm install -g karma
 - npm run pree2e
@@ -28,6 +28,3 @@ before_script:
 - npm run ng build --prod
 - bash 404.sh
 - npm test
-- npm run http-server &
-- sleep 1
-script: npm run e2e
