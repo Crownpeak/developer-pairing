@@ -6,7 +6,7 @@ export class CommonService {
   constructor() { }
 
   getBaseUrl() {
-    return 'http://localhost:8080/api/'
+    return 'http://localhost:63477/api/'
   }
 
 }
