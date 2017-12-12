@@ -1,8 +1,16 @@
 import React, { Component } from 'react';
-
+import { deleteAssets } from '../services/APIService'
 
 export default class Display extends Component {
 
+  removeCard(id) {
+    // let response = deleteAssets(id)
+    // this.props.deleteAsset(id)
+    deleteAssets(id)
+    .then(response => {
+      this.props.deleteAsset(response.id)
+    })
+  }
 
   render() {
 
@@ -11,7 +19,10 @@ export default class Display extends Component {
         <article className='data' key={i}>
           <h4>{data.name}</h4>
           <p>{data.id}</p>
-          <p>MORE DATA</p>
+          <button
+            onClick={ () => this.removeCard(data.id) }
+          >Delete
+          </button>
         </article>
       )
     })

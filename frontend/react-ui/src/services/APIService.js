@@ -5,22 +5,18 @@ export const getAssets = () => {
 }
 
 export const putAssets = (data) =>  {
-  return fetch(`${this.getBaseUrl}/Assets`, {
-    method: 'put',
-    body: data
-  }).then(response => { response.json() });
+  // return { id: 10 }
+  return fetch(`/api/Assets`, {
+    method: 'PUT',
+    body: JSON.stringify(data)
+  })
+    .then(response => { response.json() });
 }
 
 export const deleteAssets = (assetId) => {
-  return fetch(`${this.getBaseUrl}/Assets/${assetId}`, {
-    method: 'delete',
-  }).then(response => response.json());
+  // return { id: assetId }
+  return fetch(`$/api/Assets/${assetId}`, {
+    method: 'DELETE',
+  })
+    .then(response => response.json());
 }
-
-
-const stubData = [
-  {name: "Sam", id: 1},
-  {name: "Sam", id: 2},
-  {name: "Sam", id: 3},
-  {name: "Sam", id: 4}
-]

@@ -3,8 +3,17 @@ import { putAssets } from '../services/APIService'
 
 class Form extends Component {
 
-  submitForm(data) {
+  submitForm(e, data) {
+    // e.preventDefault();
+    // let response = putAssets(data)
+    // let newData = Object.assign({}, data, response)
+    // this.props.updateState(newData)
+    e.preventDefault();
     putAssets(data)
+    .then(response => {
+      let newData = Object.assign({}, data, response);
+      this.props.updateState(newData);
+    })
   }
 
   render() {
@@ -20,7 +29,7 @@ class Form extends Component {
 
         <button
           type="submit"
-          onClick={(e) => this.submitForm({
+          onClick={(e) => this.submitForm(e, {
             name: this.name.value,
           })}
         >
