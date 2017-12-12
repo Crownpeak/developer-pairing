@@ -4,12 +4,12 @@ import { deleteAssets } from '../services/APIService'
 export default class Display extends Component {
 
   removeCard(id) {
-    let response = deleteAssets(id)
-    this.props.deleteAsset(id)
-    // deleteAssets(id)
-    // .then(response => {
-    //   this.props.deleteAsset(response.id)
-    // })
+    // let response = deleteAssets(id)
+    // this.props.deleteAsset(id)
+    deleteAssets(id)
+    .then(response => {
+      this.props.deleteAsset(response.id)
+    })
   }
 
   render() {

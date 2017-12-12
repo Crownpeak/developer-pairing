@@ -23,9 +23,9 @@ export default class App extends Component {
   }
 
   componentWillMount() {
-    this.setState({ appData: stubData })
-    // getAssets()
-    //   .then(appData => this.setState({ appData }));
+    // this.setState({ appData: stubData })
+    getAssets()
+      .then(appData => this.setState({ appData }));
   }
 
   updateState(data) {
