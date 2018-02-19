@@ -8,11 +8,11 @@ import java.time.LocalDateTime;
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 
-@RequestMapping("/api/Assets")
+@RequestMapping("/api/assets")
 @RestController
 public class AssetsController {
-    @CrossOrigin(value = "localhost:4200")
-    @RequestMapping(value = "/getall", method = RequestMethod.GET, produces = {MediaType.APPLICATION_JSON_VALUE})
+    @CrossOrigin(value = "localhost:3000")
+    @RequestMapping(value = "", method = RequestMethod.GET, produces = {MediaType.APPLICATION_JSON_VALUE})
     public Asset[] index() {
         Asset asset = new Asset();
         asset.id = 1;
@@ -27,7 +27,7 @@ public class AssetsController {
         return assets;
     }
 
-    @RequestMapping(value = "/get/{assetId}", method = RequestMethod.GET, produces = {MediaType.APPLICATION_JSON_VALUE})
+    @RequestMapping(value = "/{assetId}", method = RequestMethod.GET, produces = {MediaType.APPLICATION_JSON_VALUE})
     public Asset get(@PathVariable Integer assetId) {
         Asset asset = new Asset();
         asset.id = assetId;
