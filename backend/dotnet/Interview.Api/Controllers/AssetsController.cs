@@ -30,7 +30,17 @@ namespace Interview.Api.Controllers
     [HttpGet("")]
     public async Task<IActionResult> GetAsync()
     {
-      return Ok(await _dbContext.Assets.ToListAsync<Asset>());
+      return Ok(await _dbContext.Assets.Where(x => x.IsDeleted == false).ToListAsync<Asset>());
+    }
+
+    /// <summary>
+    /// Return all assets in a system localhost:8080/api/assets
+    /// </summary>
+    /// <returns></returns>
+    [HttpGet("deleted")]
+    public async Task<IActionResult> GetDeletedAsync()
+    {
+      return Ok(await _dbContext.Assets.Where(x => x.IsDeleted == true).ToListAsync<Asset>());
     }
 
     /// <summary>
@@ -54,7 +64,7 @@ namespace Interview.Api.Controllers
     /// </summary>
     /// <param name="newAsset"></param>
     /// <returns></returns>
-    [HttpPut("")]
+    [HttpPost("")]
     public async Task<IActionResult> CreateAsync([FromBody] AssetDTO newAsset)
     {
       if (await _dbContext.Assets.AnyAsync(x => x.Id == newAsset.Id))
@@ -69,6 +79,28 @@ namespace Interview.Api.Controllers
 
       _dbContext.SaveChanges();
       return Ok(newAsset);
+    }
+
+    /// <summary>
+    /// Create an asset
+    /// </summary>
+    /// <param name="newAsset"></param>
+    /// <returns></returns>
+    [HttpPut("")]
+    public async Task<IActionResult> UpdateAsync([FromBody] AssetDTO asset)
+    {
+      if (!await _dbContext.Assets.AnyAsync(x => x.Id == asset.Id))
+      {
+        return BadRequest();
+      }
+
+      var valToUpdate = _dbContext.Assets.First(x => x.Id == asset.Id);
+      valToUpdate.Name = asset.Name;
+      valToUpdate.IsDeleted = asset.IsDeleted;
+
+      var retVal = _dbContext.Assets.Update(valToUpdate);
+      _dbContext.SaveChanges();
+      return Ok(retVal);
     }
 
     /// <summary>
