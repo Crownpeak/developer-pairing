@@ -97,9 +97,9 @@ namespace Interview.Api.Controllers
       valToUpdate.Name = asset.Name;
       valToUpdate.IsDeleted = asset.IsDeleted;
 
-      var retVal = _dbContext.Assets.Update(valToUpdate);
+      _dbContext.Assets.Update(valToUpdate);
       _dbContext.SaveChanges();
-      return Ok(retVal);
+      return Ok(valToUpdate);
     }
 
     /// <summary>
