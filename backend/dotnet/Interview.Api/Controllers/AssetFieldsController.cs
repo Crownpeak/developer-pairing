@@ -8,10 +8,10 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Interview.Api.Controllers
 {
-  [Route("api/[controller]")]
+  [Route("api/assetfields")]
   public class AssetsFieldsController : Controller
   {
-    private InterviewDbContext _dbContext;
+    private readonly InterviewDbContext _dbContext;
 
     public AssetsFieldsController(InterviewDbContext dbContext)
     {

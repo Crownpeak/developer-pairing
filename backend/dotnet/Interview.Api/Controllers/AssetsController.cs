@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Interview.Data;
@@ -11,11 +10,11 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Interview.Api.Controllers
 {
-  [Route("api/[controller]")]
+  [Route("api/assets")]
   [DisableCors]
   public class AssetsController : Controller
   {
-    private InterviewDbContext _dbContext;
+    private readonly InterviewDbContext _dbContext;
 
     public AssetsController(InterviewDbContext dbContext)
     {
