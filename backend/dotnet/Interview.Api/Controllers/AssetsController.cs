@@ -24,7 +24,7 @@ namespace Interview.Api.Controllers
 
 
     /// <summary>
-    /// Return all assets in a system
+    /// Return all assets in a system localhost:8080/api/assets
     /// </summary>
     /// <returns></returns>
     [HttpGet("")]
@@ -34,7 +34,7 @@ namespace Interview.Api.Controllers
     }
 
     /// <summary>
-    /// Get an asset by assetId
+    /// Get an asset by assetId localhost:8080/api/assets/1
     /// </summary>
     /// <param name="assetId"></param>
     /// <returns></returns>
@@ -79,7 +79,26 @@ namespace Interview.Api.Controllers
     [HttpDelete("{assetId}")]
     public async Task<IActionResult> DeleteAsync(int assetId)
     {
-      if (await _dbContext.Assets.AnyAsync(x => x.Id == assetId))
+      if (!await _dbContext.Assets.AnyAsync(x => x.Id == assetId))
+      {
+        return BadRequest();
+      }
+      var valToRemove = await _dbContext.Assets.FirstOrDefaultAsync(x => x.Id == assetId);
+      valToRemove.IsDeleted = true;
+      _dbContext.Assets.Update(valToRemove);
+      await _dbContext.SaveChangesAsync();
+      return Ok(valToRemove);
+    }
+
+    /// <summary>
+    /// Delete an asset
+    /// </summary>
+    /// <param name="assetId"></param>
+    /// <returns></returns>
+    [HttpDelete("force/{assetId}")]
+    public async Task<IActionResult> ForceDeleteAsync(int assetId)
+    {
+      if (!await _dbContext.Assets.AnyAsync(x => x.Id == assetId))
       {
         return BadRequest();
       }
